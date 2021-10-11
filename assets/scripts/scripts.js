@@ -201,53 +201,16 @@ function externalizeLinks() {
     block.setAttribute('data-block-loaded', true);
     const name = block.getAttribute('data-block-name');
     try {
-      const mod = await import(buildPath(`assets/blocks/${name}/${name}.js`));
-      console.log("HELLO ANYONE IN THE WORLD");
-      console.log(buildPath(`assets/blocks/${name}/${name}.js`));
+      const mod = await import(buildPath(`blocks/${name}/${name}.js`));
+      console.log(buildPath(`blocks/${name}/${name}.js`));
       if (mod.default) {
         await mod.default(block, name, document);
       }
     } catch (err) {
       console.error(`failed to load module for ${name}`, err);
     }
-    loadCSS(`assets/blocks/${name}/${name}.css`);
+    loadCSS(`blocks/${name}/${name}.css`);
   }
-}
-
-/**
- * Extracts the config from a block.
- * @param {Element} $block The block element
- * @returns {object} The block config
- */
-export function readBlockConfig($block) {
-  const config = {};
-  $block.querySelectorAll(':scope>div').forEach(($row) => {
-    if ($row.children) {
-      const $cols = [...$row.children];
-      if ($cols[1]) {
-        const $value = $cols[1];
-        const name = toClassName($cols[0].textContent);
-        let value = '';
-        if ($value.querySelector('a')) {
-          const $as = [...$value.querySelectorAll('a')];
-          if ($as.length === 1) {
-            value = $as[0].href;
-          } else {
-            value = $as.map(($a) => $a.href);
-          }
-        } else if ($value.querySelector('p')) {
-          const $ps = [...$value.querySelectorAll('p')];
-          if ($ps.length === 1) {
-            value = $ps[0].textContent;
-          } else {
-            value = $ps.map(($p) => $p.textContent);
-          }
-        } else value = $row.children[1].textContent;
-        config[name] = value;
-      }
-    }
-  });
-  return config;
 }
 
 /**
@@ -307,42 +270,42 @@ export function getOptimizedImageURL(src) {
 /**
  * Resets an elelemnt's attribute to the optimized image URL.
  * @see getOptimizedImageURL
- * @param {Element} $elem The element
- * @param {string} attrib The attribute
+ * @param {Element} el The element
+ * @param {string} attr The attribute
  */
-function resetOptimizedImageURL($elem, attrib) {
-  const src = $elem.getAttribute(attrib);
+function resetOptimizedImageURL(el, attr) {
+  const src = el.getAttribute(attr);
   if (src) {
     const oSrc = getOptimizedImageURL(src);
     if (oSrc !== src) {
-      $elem.setAttribute(attrib, oSrc);
+      el.setAttribute(attr, oSrc);
     }
   }
 }
 
 /**
  * WEBP Polyfill for older browser versions.
- * @param {Element} $elem The container element
+ * @param {Element} el The container element
  */
-export function webpPolyfill($elem) {
+export function webpPolyfill(el) {
   if (!window.webpSupport) {
-    $elem.querySelectorAll('img').forEach(($img) => {
-      resetOptimizedImageURL($img, 'src');
+    el.querySelectorAll('img').forEach((img) => {
+      resetOptimizedImageURL(img, 'src');
     });
-    $elem.querySelectorAll('picture source').forEach(($source) => {
-      resetOptimizedImageURL($source, 'srcset');
+    el.querySelectorAll('picture source').forEach((src) => {
+      resetOptimizedImageURL(src, 'srcset');
     });
   }
 }
 
 /**
  * Normalizes all headings within a container element.
- * @param {Element} $elem The container element
+ * @param {Element} el The container element
  * @param {[string]]} allowedHeadings The list of allowed headings (h1 ... h6)
  */
-export function normalizeHeadings($elem, allowedHeadings) {
+export function normalizeHeadings(el, allowedHeadings) {
   const allowed = allowedHeadings.map((h) => h.toLowerCase());
-  $elem.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((tag) => {
+  el.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((tag) => {
     const h = tag.tagName.toLowerCase();
     if (allowed.indexOf(h) === -1) {
       // current heading is not in the allowed list -> try first to "promote" the heading
@@ -365,14 +328,13 @@ export function normalizeHeadings($elem, allowedHeadings) {
 
 /**
  * Decorates the main element.
- * @param {Element} $main The main element
+ * @param {Element} main The main element
  */
-export function decorateMain($main) {
-  wrapSections($main.querySelectorAll(':scope > div'));
+export function decorateMain(main) {
   checkWebpFeature(() => {
-    webpPolyfill($main);
+    webpPolyfill(main);
   });
-  decorateBlocks($main);
+  decorateBlocks(main);
 }
 
 /**
@@ -399,15 +361,15 @@ export function addFavIcon(href) {
  * @param {Function} postLCP The callback function
  */
 function setLCPTrigger(doc, postLCP) {
-  const $lcpCandidate = doc.querySelector('main > div:first-of-type img');
-  if ($lcpCandidate) {
-    if ($lcpCandidate.complete) {
+  const lcpCandidate = doc.querySelector('main > div:first-of-type img');
+  if (lcpCandidate) {
+    if (lcpCandidate.complete) {
       postLCP();
     } else {
-      $lcpCandidate.addEventListener('load', () => {
+      lcpCandidate.addEventListener('load', () => {
         postLCP();
       });
-      $lcpCandidate.addEventListener('error', () => {
+      lcpCandidate.addEventListener('error', () => {
         postLCP();
       });
     }
@@ -422,23 +384,29 @@ function setLCPTrigger(doc, postLCP) {
  */
 async function decoratePage(win = window) {
   const doc = win.document;
-  const path = getPath();
-  const legal = ['privacy-policy', 'terms-and-conditions'];
-  if (path.includes('order')) {
-    decorateOrderPage(path);
-  }
-  if (legal.includes(path[0])) {
-    decorateLegalPage(path);
-  }
-  decorateBlocks();
+  const main = doc.querySelector('main');
+  if (main) {
+    decorateMain(main);
 
-  doc.querySelector('body').classList.add('appear');
-    setLCPTrigger(doc, async () => {
-      // post LCP actions go here
-      await loadBlocks($main);
-      loadCSS('/styles/lazy-styles.css');
-      externalizeLinks();
-    });
+    const path = getPath();
+    const legal = ['privacy-policy', 'terms-and-conditions'];
+
+    if (path.includes('order')) {
+      decorateOrderPage(path);
+    }
+    if (legal.includes(path[0])) {
+      decorateLegalPage(path);
+    }
+  
+    doc.querySelector('body').classList.add('appear');
+      setLCPTrigger(doc, async () => {
+        // post LCP actions go here
+        await loadBlocks();
+        loadCSS('/styles/lazy-styles.css');
+        externalizeLinks();
+      });
+  }
+  
 }
 
 /**
