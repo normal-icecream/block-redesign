@@ -22,15 +22,16 @@ export default function decorateStarburstCollapse(block) {
   
   // build starburst
   const starburst = createEl('img', { 
-    src: buildPath('assets/svg/starburst/starburst-pink.svg'),
+    src: buildPath('svg/starburst-pink.svg'),
     class: 'starburst'
   });
 
+  const starburstText = block.querySelector('em');
   const text = createEl('p', {
     class: 'starburst-text'
   });
-  // TODO: get text from block
-  text.textContent = 'need a drink?';
+  text.textContent = starburstText.textContent;
+  starburstText.parentElement.remove(); // remove p > em
 
   // build close button for menu
   const closeBtn = createEl('button', {
