@@ -1,0 +1,57 @@
+main[class*=order--] > div {
+  text-align: center;
+}
+
+/* ORDER LOCATION INFO */
+
+main[class*=order--] > div.order-location-info svg:not(.icon-reg) {
+  height: 20rem;
+  width: 20rem;
+}
+
+main[class*=order--] > div svg.icon-v,
+main[class*=order--] > div svg.icon-gf {
+  margin: -0.4rem;
+}
+
+main[class*=order--] > div.order-location-info p:not(svg):not(:last-of-type) {
+  padding-bottom: var(--body-line-height);
+}
+
+/* ORDER MENU INFO */
+
+main[class*=order--] > div:not(.order-location-info) {
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+main[class*=order--] > div:not(.order-location-info) p {
+  font-size: 66%;
+  line-height: 1.4;
+  font-weight: var(--weight-normal);
+}
+
+main[class*=order--] > div:not(.order-location-info) p strong {
+  font-size: 133%;
+}
+
+/* spacing between same heading level */ 
+main[class*=order--] > div h3 + h3 {
+  padding-top: 0;
+}
+
+/* spacing between menu items */
+main[class*=order--] > div p + h3 {
+  padding-top: 1rem;
+}
+
+main[class*=order--] > div img {
+  max-height: 20rem;
+  width: auto;
+  max-width: 100%;
+  transition: transform 0.2s;
+}
+
+main[class*=order--] > div img:hover {
+  transform: scale(1.2) rotate(6deg);
+}

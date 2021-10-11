@@ -1,0 +1,18 @@
+main.legal h3 {
+  line-height: 100%;
+}
+
+main.legal p,
+main.legal li {
+  font-size: calc(var(--body-font-size) / 1.6);
+  line-height: calc(var(--body-line-height) / 1.2);
+  font-weight: var(--weight-normal);
+  padding-bottom: 1rem;
+}
+
+main.legal a:any-link:not([href*=mailto]) {
+  color: inherit;
+  font-weight: bold;
+  text-decoration-thickness: 2px;
+}
+
