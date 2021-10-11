@@ -1,0 +1,66 @@
+body {
+  visibility: unset;
+  background: var(--color-white);
+  color: var(--color-blue);
+}
+
+/* ORDER PAGE */
+
+main[class*=order--] > div:not(.order-location-info) {
+  background: var(--color-blue);
+  color: var(--color-white);
+}
+
+main[class*=order--] .btn-cart {
+  background: var(--color-white);
+  color: var(--color-blue);
+}
+
+/* CAROUSEL BLOCK */
+main[class*=order--] > div.carousel-menu-container {
+  background: transparent;
+  border-color: var(--color-blue);
+  color: var(--color-blue);
+}
+
+.carousel-menu-container .carousel-menu-title {
+  border-color: var(--color-blue);
+}
+
+.carousel-menu-container a.btn-cart {
+  background: var(--color-blue);
+  color: var(--color-white);
+}
+
+.carousel-menu-container button.icon.nav:hover,
+.carousel-menu-container button.icon.nav:focus {
+  background: var(--color-blue);
+}
+
+.carousel-menu-container button.icon.nav:hover::before,
+.carousel-menu-container button.icon.nav:hover::after,
+.carousel-menu-container button.icon.nav:focus::before,
+.carousel-menu-container button.icon.nav:focus::after {
+  border-color: var(--color-white);
+}
+
+
+/* BUTTONS */
+a.btn-cart { 
+  background: var(--color-white);
+}
+
+button.icon {
+  background: transparent;
+}
+
+button.icon:hover,
+button.icon:focus {
+  background: var(--color-white);
+}
+
+button.icon::before,
+button.icon::after {
+  background: var(--color-blue);
+  border-color: var(--color-blue);
+}
