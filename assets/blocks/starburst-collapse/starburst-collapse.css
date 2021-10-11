@@ -37,7 +37,12 @@
   visibility: visible;
 }
 
-main > div.starburst-collapse-menu {
-  background: var(--color-pink) !important;
-  color: var(--color-blue) !important;
+main > div.starburst-collapse-menu.starburst-menu-pink {
+  background: var(--color-pink);
+  color: var(--color-blue);
+}
+
+main > div.starburst-collapse-menu.starburst-menu-blue {
+  background: var(--color-pink);
+  color: var(--color-blue);
 }

@@ -21,17 +21,19 @@ export default function decorateStarburstCollapse(block) {
   });
   
   // build starburst
+  const configColor = block.querySelector('strong').textContent;
   const starburst = createEl('img', { 
-    src: buildPath('svg/starburst-pink.svg'),
-    class: 'starburst'
+    src: buildPath(`svg/starburst-${configColor}.svg`),
+    class: `starburst`
   });
 
-  const starburstText = block.querySelector('em');
+  const configText = block.querySelector('em').textContent;
   const text = createEl('p', {
     class: 'starburst-text'
   });
-  text.textContent = starburstText.textContent;
-  starburstText.parentElement.remove(); // remove p > em
+  text.textContent = configText;
+
+  block.firstElementChild.remove(); // remove config div
 
   // build close button for menu
   const closeBtn = createEl('button', {
@@ -67,6 +69,7 @@ export default function decorateStarburstCollapse(block) {
   }
 
   container.append(text, starburst);
+  container.classList.add(`starburst-${configColor}`);
   container.addEventListener('click', expand);
 
   closeBtnContainer.append(closeBtn);
@@ -76,6 +79,6 @@ export default function decorateStarburstCollapse(block) {
 
   parent.setAttribute('aria-labelledby', `starburst-collapse--${titleDashed}`);
   parent.setAttribute('role', 'menu');
-  parent.classList.add('starburst-collapse-menu');
+  parent.classList.add('starburst-collapse-menu', `starburst-menu-${configColor}`);
   parent.prepend(closeBtnContainer);
 }

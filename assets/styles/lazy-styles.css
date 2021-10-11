@@ -1,1 +1,58 @@
-/* below the fold CSS goes here */
+/* STARBURSTS */
+.starburst-container {
+  position: relative;
+  text-align: center;
+  height: 20rem;
+  width: 20rem;
+  margin: 0 auto;
+  transition: transform 0.2s linear;
+  cursor: pointer;
+}
+
+.starburst-container.starburst-blue {
+  color: white;
+}
+
+.starburst-container.starburst-pink {
+  color: blue;
+}
+
+.starburst-container:hover,
+.starburst-container:focus {
+  transform: scale(1.4);
+}
+
+.starburst-container > .starburst {
+  height: 20rem;
+  width: 20rem;
+  animation-name: star-spin;
+  animation-duration: 16s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear; 
+}
+
+.starburst-container > .starburst-text:hover + *,
+.starburst-container > .starburst-text:focus + *,
+.starburst-container > .starburst:hover,
+.starburst-container > .starburst:focus {
+  animation-duration: 6s;
+}
+
+.starburst-container > .starburst-text {
+  width: 20rem;
+  padding: 0 4rem;
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(8deg);
+}
+
+@keyframes star-spin {
+  from {
+    transform:rotate(0deg);
+  }
+  to {
+    transform:rotate(360deg);
+  }
+}
