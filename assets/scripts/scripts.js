@@ -173,11 +173,22 @@ function externalizeLinks() {
     .querySelectorAll('main > div a[href]')
     .forEach((a) => {
       const { origin } = new URL(a.href);
-      if (origin && origin !== window.location.origin) {
+      if (origin !== 'null' && origin !== window.location.origin) {
         a.setAttribute('rel', 'noreferrer');
         a.setAttribute('target', '_blank');
+        a.setAttribute('data-origin', 'external');
       }
     })
+}
+
+/**
+ * Build footer
+ */
+function loadFooter() {
+  const footer = document.querySelector('footer');
+  footer.setAttribute('data-block-name', 'footer');
+  footer.setAttribute('data-source', `/footer`);
+  loadBlock(footer);
 }
 
 /**
@@ -399,6 +410,7 @@ async function decoratePage(win = window) {
     doc.querySelector('body').classList.add('appear');
       setLCPTrigger(doc, async () => {
         // post LCP actions go here
+        loadFooter();
         await loadBlocks();
         loadCSS('styles/lazy-styles.css');
         externalizeLinks();

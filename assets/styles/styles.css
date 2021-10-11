@@ -101,6 +101,10 @@ ol li::before {
   font-weight: var(--weight-bold);
 }
 
+/* LINKS */
+a:visited {
+  color: inherit;
+}
 
 /* HEADINGS */
 h2, h3, h4, h5, h6 {
