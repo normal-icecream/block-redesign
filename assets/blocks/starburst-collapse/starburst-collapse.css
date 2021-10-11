@@ -1,0 +1,43 @@
+@media (min-width: 786px) {
+  .starburst-collapse-btn {
+    position: absolute;
+    margin-top: -10rem;
+    left: 50%;
+    transform: translateX(-200%);
+  }
+
+  .starburst-container:hover, .starburst-container:focus {
+    transform: scale(1.4) translateX(-140%);
+  }
+}
+
+@media (min-width: 1200px) {
+  .starburst-collapse-btn {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-275%);
+  }
+
+  .starburst-container:hover, .starburst-container:focus {
+    transform: scale(1.4) translateX(-196%);
+  }
+}
+
+.starburst-collapse-btn[aria-expanded=true] {
+  visibility: hidden;
+  display: none;
+}
+
+.starburst-collapse-btn[aria-expanded=false] + .starburst-collapse-container {
+  visibility: hidden;
+  display: none;
+}
+
+.starburst-collapse-btn[aria-expanded=true] + .starburst-collapse-container {
+  visibility: visible;
+}
+
+main > div.starburst-collapse-menu {
+  background: var(--color-pink) !important;
+  color: var(--color-blue) !important;
+}

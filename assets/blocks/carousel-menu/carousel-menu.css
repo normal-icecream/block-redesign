@@ -1,0 +1,71 @@
+/* CAROUSEL BLOCK CONTAINER */
+.carousel-menu-container {
+  position: relative;
+  border-style: solid;
+  border-width: 1px;  
+  padding: 0 !important;
+}
+
+@media (min-width: 1200px) {
+  .carousel-menu-container > * {
+    width: unset;
+  }
+}
+
+.carousel-menu-container .carousel-menu-title {
+  border-bottom: 1px solid;
+  margin: 1rem 0;
+}
+
+/* CAROUSEL CONTAINER */
+.carousel-menu {
+  display: flex;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+}
+
+.carousel-menu::-webkit-scrollbar {
+  display: none;
+}
+
+/* CAROUSEL SLIDE */
+.carousel-menu > div {
+  flex-shrink: 0;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .carousel-menu.carousel-slides-two > div,
+  .carousel-menu.carousel-slides-three > div,
+  .carousel-menu.carousel-slides-multi > div {
+    width: calc(100% / 2);
+  }
+}
+
+@media (min-width: 1200px) {
+  .carousel-menu.carousel-slides-three > div,
+  .carousel-menu.carousel-slides-multi > div {
+    width: calc(100% / 3);
+  }
+}
+
+/* CAROUSEL ITEM */
+.carousel-menu > div > div {
+  padding: 2rem 6rem;
+}
+
+/* CAROUSEL NAVIGATION */
+.carousel-menu-container button.icon.right,
+.carousel-menu-container button.icon.left {
+  position: absolute;
+  top: 50%;
+}
+
+.carousel-menu-container button.icon.left {
+  left: 0;
+}
+
+.carousel-menu-container button.icon.right {
+  right: 0;
+}
