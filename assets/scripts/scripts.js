@@ -81,7 +81,7 @@ function getMetadata() {
  function loadTheme() {
   const { theme } = getMetadata(); // white-blue default
   if (theme) {
-    loadCSS(`styles/themes/${theme}-blue.css`);
+    loadCSS(`styles/themes/${theme}.css`);
   } else {
     loadCSS('styles/themes/white-blue.css');
   }
