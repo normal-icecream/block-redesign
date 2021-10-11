@@ -28,7 +28,6 @@
 
 export function buildPath(path) {
   const { origin } = new URL(window.location);
-  console.log(`${origin}/assets/${path}`);
   return `${origin}/assets/${path}`;
 }
 
@@ -82,9 +81,9 @@ function getMetadata() {
  function loadTheme() {
   const { theme } = getMetadata(); // white-blue default
   if (theme) {
-    loadCSS(`themes/${theme}.css`);
+    loadCSS(`styles/themes/${theme}-blue.css`);
   } else {
-    loadCSS('themes/white-blue.css');
+    loadCSS('styles/themes/white-blue.css');
   }
 }
 
@@ -202,7 +201,6 @@ function externalizeLinks() {
     const name = block.getAttribute('data-block-name');
     try {
       const mod = await import(buildPath(`blocks/${name}/${name}.js`));
-      console.log(buildPath(`blocks/${name}/${name}.js`));
       if (mod.default) {
         await mod.default(block, name, document);
       }
@@ -402,7 +400,7 @@ async function decoratePage(win = window) {
       setLCPTrigger(doc, async () => {
         // post LCP actions go here
         await loadBlocks();
-        loadCSS('/styles/lazy-styles.css');
+        loadCSS('styles/lazy-styles.css');
         externalizeLinks();
       });
   }
@@ -419,7 +417,7 @@ async function decoratePage(win = window) {
   document
     .querySelector('main > div:first-of-type')
     .classList.add('order-location-info');
-  loadCSS('/styles/order.css');
+  loadCSS('styles/order.css');
   decorateSquareLinks();
 }
 
@@ -430,7 +428,7 @@ async function decoratePage(win = window) {
  function decorateLegalPage(path) {
   document.querySelector('main').classList.add(path);
   document.querySelector('main').classList.add('legal');
-  loadCSS('/styles/legal.css');
+  loadCSS('styles/legal.css');
 }
 
 window.onload = async (e) => {
