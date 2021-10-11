@@ -16,7 +16,7 @@
  * @param {object} params Additional parameters for element
  * @returns {Element} The block element
  */
- export function createEl(tag, params) {
+export function createEl(tag, params) {
   const el = document.createElement(tag);
   if (params) {
     for (const param in params) {
@@ -35,10 +35,10 @@ export function buildPath(path) {
  * Gets path info.
  * @returns {array} path parameters
  */
- function getPath() {
+function getPath() {
   const { pathname } = new URL(window.location);
   const pathArr = pathname.split('/').filter(path => path);
-  return pathArr.length ? pathArr : [ 'index' ]; // index default
+  return pathArr.length ? pathArr : ['index']; // index default
 }
 
 /**
@@ -57,6 +57,23 @@ export function loadCSS(href) {
 }
 
 /**
+ * loads a script by adding a script tag to the head.
+ * @param {string} url URL of the js file
+ * @param {Function} callback callback on load
+ * @param {string} type type attribute of script tag
+ * @returns {Element} script element
+ */
+export function loadScript(url, callback, type) {
+  const head = document.querySelector('head');
+  const props = { src: url }
+  if (type) { props.type = type; }
+  const script = createEl('script', props);
+  head.append(script);
+  script.onload = callback;
+  return script;
+}
+
+/**
  * Retrieves the content of a metadata tag.
  * @param {string} name The metadata name (or property)
  * @returns {string} The metadata value
@@ -66,11 +83,11 @@ export function loadCSS(href) {
  * @returns {object} key/value pairs or name and content
  */
 function getMetadata() {
-  const metadata = {}; 
+  const metadata = {};
   document.querySelectorAll('meta').forEach((meta) => {
     if (meta.name && !meta.name.includes(':')) {
       metadata[meta.name] = meta.content;
-    } 
+    }
   });
   return metadata;
 }
@@ -78,7 +95,7 @@ function getMetadata() {
 /**
  * Loads the theme CSS file.
  */
- function loadTheme() {
+function loadTheme() {
   const { theme } = getMetadata(); // white-blue default
   if (theme) {
     loadCSS(`styles/themes/${theme}.css`);
@@ -107,15 +124,15 @@ export function addPublishDependencies(url) {
  * @returns {string} The class name
  */
 export function toClassName(name) {
-  return name && typeof name === 'string'
-    ? name.toLowerCase().replace(/[^0-9a-z]/gi, '-')
-    : '';
+  return name && typeof name === 'string' ?
+    name.toLowerCase().replace(/[^0-9a-z]/gi, '-') :
+    '';
 }
 
 /**
  * Decorates all blocks.
  */
- function decorateBlocks() {
+function decorateBlocks() {
   document
     .querySelectorAll('main > div > div[class]')
     .forEach((block) => {
@@ -127,7 +144,7 @@ export function toClassName(name) {
  * Decorates single block
  * @param {Element} block Block element to be decorated
  */
- function decorateBlock(block) {
+function decorateBlock(block) {
   const name = block.classList[0];
   block.parentElement
     .classList.add(`${name}-container`.replace(/--/g, '-'));
@@ -138,7 +155,7 @@ export function toClassName(name) {
 /**
  * Decorates all Square links.
  */
- function decorateSquareLinks() {
+function decorateSquareLinks() {
   document
     .querySelectorAll('main > div a[href*="squareup"]')
     .forEach((a) => {
@@ -150,7 +167,7 @@ export function toClassName(name) {
  * Decorates single Square link.
  * @param {Element} a Anchor element to be decorated
  */
- function decorateSquareLink(a) {
+function decorateSquareLink(a) {
   a.classList.add('btn', 'btn-cart');
   a.parentElement.classList.add('btn-container');
 
@@ -194,10 +211,10 @@ function loadFooter() {
 /**
  * Loads JS and CSS for all blocks.
  */
- async function loadBlocks() {
+async function loadBlocks() {
   document
     .querySelectorAll('main > div > div.block')
-    .forEach(async (block) => {
+    .forEach(async(block) => {
       loadBlock(block);
     });
 }
@@ -206,12 +223,13 @@ function loadFooter() {
  * Loads JS and CSS for a single block.
  * @param {Element} block The block element
  */
- async function loadBlock(block) {
+async function loadBlock(block) {
   if (!block.getAttribute('data-block-loaded')) {
     block.setAttribute('data-block-loaded', true);
     const name = block.getAttribute('data-block-name');
     try {
-      const mod = await import(buildPath(`blocks/${name}/${name}.js`));
+      const mod = await
+      import (buildPath(`blocks/${name}/${name}.js`));
       if (mod.default) {
         await mod.default(block, name, document);
       }
@@ -406,24 +424,24 @@ async function decoratePage(win = window) {
     if (legal.includes(path[0])) {
       decorateLegalPage(path);
     }
-  
+
     doc.querySelector('body').classList.add('appear');
-      setLCPTrigger(doc, async () => {
-        // post LCP actions go here
-        loadFooter();
-        await loadBlocks();
-        loadCSS('styles/lazy-styles.css');
-        externalizeLinks();
-      });
+    setLCPTrigger(doc, async() => {
+      // post LCP actions go here
+      loadFooter();
+      await loadBlocks();
+      loadCSS('styles/lazy-styles.css');
+      externalizeLinks();
+    });
   }
-  
+
 }
 
 /**
  * Decorate order page.
  * @param {array} path path parameters
  */
- function decorateOrderPage(path) {
+function decorateOrderPage(path) {
   document.querySelector('main').classList.add(path.join('--'));
   // set first div as info
   document
@@ -431,19 +449,20 @@ async function decoratePage(win = window) {
     .classList.add('order-location-info');
   loadCSS('styles/order.css');
   decorateSquareLinks();
+  loadScript('https://js.squareup.com/v2/paymentform');
 }
 
 /**
  * Decorate legal page.
  * @param {array} path path parameters
  */
- function decorateLegalPage(path) {
+function decorateLegalPage(path) {
   document.querySelector('main').classList.add(path);
   document.querySelector('main').classList.add('legal');
   loadCSS('styles/legal.css');
 }
 
-window.onload = async (e) => {
+window.onload = async(e) => {
   loadTheme();
   decoratePage();
 };
