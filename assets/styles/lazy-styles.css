@@ -1,3 +1,10 @@
+/* LINKS */
+a[data-origin=external] {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
 /* STARBURSTS */
 .starburst-container {
   position: relative;
