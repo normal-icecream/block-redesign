@@ -39,6 +39,11 @@ button {
   outline: 0;
 }
 
+
+html, body {
+  height: 100%;
+}
+
 html {
   font-size: 62.5%; /* setting 1rem to 10px */
   scroll-behavior: smooth;
@@ -50,6 +55,13 @@ body {
   font-weight: var(--weight-black);
   font-size: var(--body-font-size);
   line-height: var(--body-line-height);
+  /* sticky footer */
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
 }
 
 main > div {
