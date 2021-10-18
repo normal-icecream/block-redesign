@@ -35,7 +35,7 @@ export function buildPath(path) {
  * Gets path info.
  * @returns {array} path parameters
  */
-function getPath() {
+export function getPath() {
   const { pathname } = new URL(window.location);
   const pathArr = pathname.split('/').filter(path => path);
   return pathArr.length ? pathArr : ['index']; // index default
@@ -466,13 +466,31 @@ function decorateLegalPage(path) {
 
 function removeEmptyDivs() {
   document.querySelectorAll('div').forEach((div) => {
+    console.log(div);
     const content = div.textContent.trim();
+    console.log(content);
     if (!content) { div.remove(); }
   })
 }
 
+/**
+ * Fetchs placeholder JSON.
+ * @returns {object} 
+ */
+export async function fetchLabels() {
+  const resp = await fetch('/_data/labels.json', { cache: "reload" });
+  let json = await resp.json();
+  if (json.data) {
+    json = json.data; // helix quirk, difference between live and local
+  }
+  window.labels = {};
+  json.forEach((j) => {
+    window.labels[j.key] = j.value;
+  });
+  return window.labels;
+};
+
 window.onload = async(e) => {
   loadTheme();
-  decoratePage();
-  removeEmptyDivs();
+  await decoratePage();
 };

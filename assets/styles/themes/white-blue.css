@@ -62,6 +62,12 @@ main[class*=order--] > div.carousel-menu-container {
   border-color: var(--color-white);
 }
 
+/* CONTACT US BLOCK */
+main > div.contact-us-container,
+main[class*=order--] > div.contact-us-container {
+  background: transparent;
+  color: var(--color-blue)
+} 
 
 /* BUTTONS */
 a.btn-cart { 

@@ -1,0 +1,4 @@
+.contact-us-text a {
+  text-decoration: none;
+  font-weight: var(--weight-bold);
+}
