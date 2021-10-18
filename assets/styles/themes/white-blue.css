@@ -4,6 +4,24 @@ body {
   color: var(--color-blue);
 }
 
+/* INDEX PAGE */
+
+.index-carousel .icon {
+  background: transparent;
+}
+
+.index-carousel .icon:hover,
+.index-carousel .icon:focus {
+  background: var(--color-blue);
+}
+
+.index-carousel .icon:hover::before,
+.index-carousel .icon:focus::before,
+.index-carousel .icon:hover::after,
+.index-carousel .icon:focus::after {
+  border-color: var(--color-white);
+}
+
 /* ORDER PAGE */
 
 main[class*=order--] > div:not(.order-location-info) {

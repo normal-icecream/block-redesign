@@ -71,6 +71,10 @@ main > div {
   padding: 2rem;
 }
 
+footer {
+  visibility: hidden;
+}
+
 @media (min-width: 1200px) {
   main > div {
     width: 900px;
@@ -130,16 +134,16 @@ h2, h3, h4, h5, h6 {
 h1#normalreg {
   font-family: sans-serif;
   font-weight: var(--weight-normal);
-  font-size: calc(var(--body-font-size) * 3.3);
-  line-height: calc(var(--body-font-size) * 3.3);
+  font-size: calc(var(--body-font-size) * 3.2);
+  line-height: calc(var(--body-font-size) * 3.2);
   transform: scale(1, 1.2);
   margin-right: -2.8rem;
 }
 
 @media (min-width: 464px) {
   h1#normalreg {
-    font-size: calc(var(--body-font-size) * 4.9);
-    line-height: calc(var(--body-font-size) * 4.9);
+    font-size: calc(var(--body-font-size) * 4.7);
+    line-height: calc(var(--body-font-size) * 4.7);
   }
 }
 

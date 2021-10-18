@@ -1,4 +1,5 @@
 footer {
+  visibility: unset;
   margin: 2rem;
   padding-bottom: 1rem;
   text-align: center;

@@ -227,6 +227,7 @@ async function loadBlock(block) {
   if (!block.getAttribute('data-block-loaded')) {
     block.setAttribute('data-block-loaded', true);
     const name = block.getAttribute('data-block-name');
+    loadCSS(`blocks/${name}/${name}.css`);
     try {
       const mod = await
       import (buildPath(`blocks/${name}/${name}.js`));
@@ -236,7 +237,6 @@ async function loadBlock(block) {
     } catch (err) {
       console.error(`failed to load module for ${name}`, err);
     }
-    loadCSS(`blocks/${name}/${name}.css`);
   }
 }
 
@@ -365,23 +365,6 @@ export function decorateMain(main) {
 }
 
 /**
- * Adds the favicon.
- * @param {string} href The favicon URL
- */
-export function addFavIcon(href) {
-  const $link = document.createElement('link');
-  $link.rel = 'icon';
-  $link.type = 'image/svg+xml';
-  $link.href = href;
-  const $existingLink = document.querySelector('head link[rel="icon"]');
-  if ($existingLink) {
-    $existingLink.parentElement.replaceChild($link, $existingLink);
-  } else {
-    document.getElementsByTagName('head')[0].appendChild($link);
-  }
-}
-
-/**
  * Sets the trigger for the LCP (Largest Contentful Paint) event.
  * @see https://web.dev/lcp/
  * @param {Document} doc The document
@@ -430,11 +413,30 @@ async function decoratePage(win = window) {
       // post LCP actions go here
       loadFooter();
       await loadBlocks();
+      if (path.includes('index')) {
+        decorateIndexPage(path, main);
+      }
       loadCSS('styles/lazy-styles.css');
       externalizeLinks();
     });
   }
 
+}
+
+/**
+ * Decorate index page.
+ * @param {array} path path parameters
+ */
+function decorateIndexPage(path, main) {
+  const nav = document.querySelector('.index-nav-container');
+  const carousel = document.querySelector('.index-carousel-container');
+  const container = createEl('div', {
+    class: 'index-wrapper',
+    'data-block-name': 'index-wrapper'
+  });
+  container.append(nav, carousel);
+  main.append(container);
+  loadBlock(container);
 }
 
 /**
@@ -462,7 +464,15 @@ function decorateLegalPage(path) {
   loadCSS('styles/legal.css');
 }
 
+function removeEmptyDivs() {
+  document.querySelectorAll('div').forEach((div) => {
+    const content = div.textContent.trim();
+    if (!content) { div.remove(); }
+  })
+}
+
 window.onload = async(e) => {
   loadTheme();
   decoratePage();
+  removeEmptyDivs();
 };

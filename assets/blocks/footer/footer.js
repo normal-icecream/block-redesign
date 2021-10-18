@@ -1,6 +1,5 @@
 import { 
-  createEl,
-  buildPath
+  createEl
 } from '../../scripts/scripts.js';
 
 async function fetchFooterContent(url) {
