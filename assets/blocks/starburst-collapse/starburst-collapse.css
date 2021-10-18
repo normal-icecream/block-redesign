@@ -1,12 +1,12 @@
 @media (min-width: 786px) {
-  .starburst-collapse-btn {
+  aside.starburst-collapse-btn {
     position: absolute;
     margin-top: -10rem;
     left: 50%;
     transform: translateX(-200%);
   }
 
-  .starburst-container:hover, .starburst-container:focus {
+  aside.starburst-container:hover, .starburst-container:focus {
     transform: scale(1.4) translateX(-140%);
   }
 }

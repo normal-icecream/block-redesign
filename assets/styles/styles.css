@@ -132,12 +132,17 @@ h2, h3, h4, h5, h6 {
 }
 
 h1#normalreg {
+  position: relative;
   font-family: sans-serif;
   font-weight: var(--weight-normal);
-  font-size: calc(var(--body-font-size) * 3.2);
-  line-height: calc(var(--body-font-size) * 3.2);
+  font-size: calc(var(--body-font-size) * 2.8);
+  line-height: calc(var(--body-font-size) * 2.8);
   transform: scale(1, 1.2);
-  margin-right: -2.8rem;
+  text-align: center;
+}
+
+h1#normalreg svg {
+  position: absolute;
 }
 
 @media (min-width: 464px) {
