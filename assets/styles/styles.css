@@ -3,6 +3,7 @@
   --color-lt-gray: #f9f9f9;
   --color-md-gray: #ececec;
   --color-dk-gray: #d3d3d3;
+  --color-black: #140F00;
   --color-red: #F94F0D;
   --color-yellow: #FFFC92;
   --color-yellow-alt: #F7FF25;
@@ -202,9 +203,9 @@ svg {
   margin-bottom: 2rem;
 }
 
-a.btn-cart {
+a.btn {
+  display: inline-block;
   padding: 0.6rem 1.6rem;
-  margin: 1rem;
   font-family: acumin-pro-extra-condensed, sans-serif;
   font-weight: var(--weight-bold);
   font-size: 133%;
@@ -213,8 +214,8 @@ a.btn-cart {
   transition: letter-spacing 0.2s;
 }
 
-a.btn-cart:hover,
-a.btn-cart:focus {
+a.btn:hover,
+a.btn:focus {
   letter-spacing: 1px;
 }
 
@@ -293,4 +294,9 @@ button.right:before { /* STEM */
   width: 2.8rem;
   top: 2.7rem;
   left: 1.4rem;
+}
+
+.index-carousel-container,
+.popup-container {
+  visibility: hidden;
 }
