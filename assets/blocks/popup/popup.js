@@ -19,7 +19,6 @@ export default function decoratePopup(block) {
   const title = block.querySelector('h2').textContent;
   const popupStored = sessionStorage.getItem(`${title} popup`);
   const expanded = !popupStored ? true : false;
-  console.log(expanded);
 
   const parent = block.parentElement;
   parent.setAttribute('aria-expanded', expanded);
