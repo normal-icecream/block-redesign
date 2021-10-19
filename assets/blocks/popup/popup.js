@@ -5,17 +5,24 @@ import {
 function close(e) {
   const btn = e.target.closest('.icon-container');
   const parent = btn.parentElement;
+  const title = parent.querySelector('h2').textContent;
   const expanded = parent.getAttribute('aria-expanded');
   if (expanded === 'true') {
     parent.setAttribute('aria-expanded', false);
+    sessionStorage.setItem(`${title} popup`, 'viewed');
   } else {
     parent.setAttribute('aria-expanded', true);
   }
 }
 
 export default function decoratePopup(block) {
+  const title = block.querySelector('h2').textContent;
+  const popupStored = sessionStorage.getItem(`${title} popup`);
+  const expanded = !popupStored ? true : false;
+  console.log(expanded);
+
   const parent = block.parentElement;
-  parent.setAttribute('aria-expanded', true);
+  parent.setAttribute('aria-expanded', expanded);
 
   const colorEl = block.querySelector('strong');
   colorEl.remove();
@@ -28,7 +35,6 @@ export default function decoratePopup(block) {
   });
   block.prepend(logo);
 
-  const title = block.querySelector('h2').textContent;
   const closeBtn = createEl('button', {
     class: 'icon close',
     title: `close ${title} popup`
@@ -43,5 +49,5 @@ export default function decoratePopup(block) {
   parent.prepend(closeBtnContainer);
   
   const a = block.querySelector('a');
-  a.classList.add('btn');
+  if (a) { a.classList.add('btn'); }
 }
