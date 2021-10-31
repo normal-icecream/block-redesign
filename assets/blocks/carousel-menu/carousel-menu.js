@@ -20,7 +20,10 @@ export default function decorateCarouselMenu(block) {
     .forEach((slide) => {
       slide.classList.add('carousel-slide');
       slide.firstElementChild.classList.add('carousel-item');
-      slide.querySelector('img').setAttribute('loading', 'eager');
+      const img = slide.querySelector('img');
+      if (img) {
+        img.setAttribute('loading', 'eager');
+      }
     });
 
   const numSlides = block.querySelectorAll('.carousel-slide').length;

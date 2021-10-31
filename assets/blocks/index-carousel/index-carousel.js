@@ -1,6 +1,5 @@
 import { 
-  createEl,
-  getOptimizedImageURL
+  createEl
 } from '../../scripts/scripts.js';
 
 async function fetchCarousel(url) {

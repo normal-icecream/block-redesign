@@ -17,11 +17,11 @@ a[data-origin=external] {
 }
 
 .starburst-container.starburst-blue {
-  color: white;
+  color: var(--color-white);
 }
 
 .starburst-container.starburst-pink {
-  color: blue;
+  color: var(--color-blue);
 }
 
 .starburst-container:hover,

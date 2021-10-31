@@ -52,6 +52,7 @@ html {
 
 body {
   visibility: hidden;
+  font-family: "Century Gothic", sans-serif;
   font-family: "Poppins", sans-serif;
   font-weight: var(--weight-black);
   font-size: var(--body-font-size);
@@ -125,6 +126,7 @@ a:visited {
 
 /* HEADINGS */
 h2, h3, h4, h5, h6 {
+  font-family: Impact, sans-serif;
   font-family: acumin-pro-extra-condensed, sans-serif;
   font-weight: var(--weight-bold);
   font-style: normal;
@@ -206,6 +208,7 @@ svg {
 a.btn {
   display: inline-block;
   padding: 0.6rem 1.6rem;
+  font-family: Impact, sans-serif;
   font-family: acumin-pro-extra-condensed, sans-serif;
   font-weight: var(--weight-bold);
   font-size: 133%;
@@ -223,7 +226,7 @@ a.btn:focus {
   text-align: right;
 }
 
-button.icon {
+:not(svg).icon {
   border-radius: 50%;
   display: inline-block;
   position: relative;
@@ -239,8 +242,8 @@ button.icon:focus {
   transform: scale(1.2);
 }
 
-button.icon:after,
-button.icon:before {
+:not(svg).icon:after,
+:not(svg).icon:before {
   content: '';
   position: absolute;
   border: 1px solid;
@@ -248,7 +251,7 @@ button.icon:before {
 
 /* CLOSE */
 
-button.close:after {
+:not(svg).close:after {
   height: 0;
   left: 8px;
   top: 2.8rem;
@@ -256,7 +259,7 @@ button.close:after {
   transform: rotate(45deg);
 }
 
-button.close:before {
+:not(svg).close:before {
   height: 0;
   left: 8px;
   top: 2.8rem;
@@ -266,8 +269,8 @@ button.close:before {
 
 /* LEFT and RIGHT ARROWS */
 
-button.left:after,
-button.right:after { /* ARROW */
+:not(svg).left:after,
+:not(svg).right:after { /* ARROW */
   height: 2rem;
   width: 2rem;
   top: 1.8rem;
@@ -276,20 +279,20 @@ button.right:after { /* ARROW */
   transform: rotate(45deg);
 }
 
-button.left:after {
+:not(svg).left:after {
   left: 1.6rem;
   border-top: 0;
   border-right: 0;
 }
 
-button.right:after {
+:not(svg).right:after {
   right: 1.6rem;
   border-bottom: 0;
   border-left: 0;
 }
 
-button.left:before,
-button.right:before { /* STEM */
+:not(svg).left:before,
+:not(svg).right:before { /* STEM */
   height: 0;
   width: 2.8rem;
   top: 2.7rem;
