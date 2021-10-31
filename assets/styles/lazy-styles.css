@@ -46,6 +46,8 @@ a[data-origin=external] {
 }
 
 .starburst-container > .starburst-text {
+  font-size: 90%;
+  line-height: 100%;
   width: 20rem;
   padding: 0 4rem;
   z-index: 2;
