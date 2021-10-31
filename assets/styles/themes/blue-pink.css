@@ -1,5 +1,5 @@
 body {
-  visibility: unset;
+  visibility: unset !important;
   background: var(--color-blue);
   color: var(--color-pink);
 }

@@ -30,7 +30,8 @@
 .order.block .view-tile {
   margin: 1rem 0;
   padding-bottom: 2rem;
-  font-family: Impact, acumin-pro-extra-condensed, sans-serif;
+  font-family: Impact, sans-serif;
+  font-family: acumin-pro-extra-condensed, sans-serif;
   font-weight: var(--weight-bold);
   font-size: 160%;
   text-align: center;
