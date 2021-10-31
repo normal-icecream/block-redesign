@@ -1,0 +1,66 @@
+main.about > div {
+  text-align: center;
+}
+
+/* ABOUT INFO */
+
+main.about > div.about-info p {
+  padding-top: var(--body-line-height);
+  font-weight: var(--weight-bold);
+  font-family: acumin-pro-extra-condensed, sans-serif;
+  font-size: 120%;
+  line-height: 120%;
+}
+
+main.about > div.about-info p strong {
+  font-weight: var(--weight-black);
+}
+
+main.about > div.about-info p em {
+  font-weight: var(--weight-normal);
+  padding-right: 0.2rem;
+}
+
+/* ABOUT MENU INFO */
+
+main.about > div:not(.about-info) {
+  margin: 2rem auto;
+  padding: 2rem;
+}
+
+main.about > div:not(.about-info) p {
+  font-size: 66%;
+  line-height: 1.4;
+  font-weight: var(--weight-normal);
+}
+
+main.about > div:not(.about-info) p strong {
+  font-size: 133%;
+}
+
+/* spacing between same heading level */ 
+main.about > div h3 + h3 {
+  padding-top: 0;
+}
+
+/* spacing between menu items */
+main.about > div p + h3 {
+  padding-top: 1rem;
+}
+
+/* ABOUT CAROUSEL */
+main.about .carousel-menu h3 + p {
+  padding: 1rem 0;
+}
+
+main.about .carousel-menu strong {
+  line-height: 100%;
+  font-size: 100% !important;
+}
+
+main.about .carousel-menu img {
+  object-fit: cover;
+  height: 15.6rem;
+  width: 15.6rem;
+  border-radius: 50%;
+}

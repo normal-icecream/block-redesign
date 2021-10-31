@@ -1,0 +1,95 @@
+body {
+  visibility: unset;
+  background: var(--color-blue);
+  color: var(--color-pink);
+}
+
+/* INDEX PAGE */
+
+.index-carousel .icon {
+  background: transparent;
+}
+
+.index-carousel .icon:hover,
+.index-carousel .icon:focus {
+  background: var(--color-pink);
+}
+
+.index-carousel .icon:hover::before,
+.index-carousel .icon:focus::before,
+.index-carousel .icon:hover::after,
+.index-carousel .icon:focus::after {
+  border-color: var(--color-blue);
+}
+
+/* ORDER PAGE */
+
+main[class*=order--] > div:not(.order-location-info) {
+  background: var(--color-pink);
+  color: var(--color-blue);
+}
+
+main[class*=order--] .btn-cart {
+  background: var(--color-blue);
+  color: var(--color-pink);
+}
+
+/* CAROUSEL BLOCK */
+main[class*=order--] > div.carousel-menu-container {
+  background: transparent;
+  border-color: var(--color-pink);
+  color: var(--color-pink);
+}
+
+.carousel-menu-container .carousel-menu-title {
+  border-color: var(--color-pink);
+}
+
+.carousel-menu-container a.btn-cart {
+  background: var(--color-pink);
+  color: var(--color-blue);
+}
+
+.carousel-menu-container button.icon.nav:hover,
+.carousel-menu-container button.icon.nav:focus {
+  background: var(--color-pink);
+}
+
+.carousel-menu-container button.icon.nav:hover::before,
+.carousel-menu-container button.icon.nav:hover::after,
+.carousel-menu-container button.icon.nav:focus::before,
+.carousel-menu-container button.icon.nav:focus::after {
+  border-color: var(--color-blue);
+}
+
+/* CONTACT US BLOCK */
+main > div.contact-us-container,
+main[class*=order--] > div.contact-us-container {
+  background: transparent;
+  color: var(--color-pink)
+} 
+
+/* BUTTONS */
+a.btn-cart { 
+  background: var(--color-blue);
+}
+
+button.icon {
+  background: transparent;
+}
+
+button.icon:hover,
+button.icon:focus {
+  background: var(--color-blue);
+}
+
+button.icon::before,
+button.icon::after {
+  background: var(--color-pink);
+  border-color: var(--color-pink);
+}
+
+.order.block #back-btn {
+  background: var(--color-pink);
+  color: var(--color-blue);
+}

@@ -17,6 +17,19 @@
   margin: 1rem 0;
 }
 
+/* IMAGES */
+
+.carousel-menu-container img {
+  max-height: 20rem;
+  width: auto;
+  max-width: 100%;
+  transition: transform 0.2s;
+}
+
+.carousel-menu-container img:hover {
+  transform: scale(1.2) rotate(6deg);
+}
+
 /* CAROUSEL CONTAINER */
 .carousel-menu {
   display: flex;

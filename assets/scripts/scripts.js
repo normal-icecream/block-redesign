@@ -401,22 +401,27 @@ async function decoratePage(win = window) {
     const path = getPath();
     const legal = ['privacy-policy', 'terms-and-conditions'];
 
+    console.log(path);
+
     if (path.includes('order')) {
       decorateOrderPage(path);
     }
     if (legal.includes(path[0])) {
       decorateLegalPage(path);
     }
+    if (path.includes('about')) {
+      decorateAboutPage(path);
+    }
 
     doc.querySelector('body').classList.add('appear');
     setLCPTrigger(doc, async() => {
       // post LCP actions go here
-      loadFooter();
       await loadBlocks();
       if (path.includes('index')) {
         decorateIndexPage(path, main);
       }
       loadCSS('styles/lazy-styles.css');
+      loadFooter();
       externalizeLinks();
     });
   }
@@ -462,6 +467,19 @@ function decorateLegalPage(path) {
   document.querySelector('main').classList.add(path);
   document.querySelector('main').classList.add('legal');
   loadCSS('styles/legal.css');
+}
+
+/**
+ * Decorate about page.
+ * @param {array} path path parameters
+ */
+function decorateAboutPage(path) {
+  document.querySelector('main').classList.add(path.join('--'));
+    // set first div as info
+  document
+    .querySelector('main > div:first-of-type')
+    .classList.add('about-info');
+  loadCSS('styles/about.css');
 }
 
 function removeEmptyDivs() {
