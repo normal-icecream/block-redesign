@@ -7,7 +7,7 @@ main.about > div {
 main.about > div.about-info p {
   padding-top: var(--body-line-height);
   font-weight: var(--weight-bold);
-  font-family: acumin-pro-extra-condensed, sans-serif;
+  font-family: Impact, acumin-pro-extra-condensed, sans-serif;
   font-size: 120%;
   line-height: 120%;
 }

@@ -52,7 +52,7 @@ html {
 
 body {
   visibility: hidden;
-  font-family: "Poppins", sans-serif;
+  font-family: "Century Gothic", "Poppins", sans-serif;
   font-weight: var(--weight-black);
   font-size: var(--body-font-size);
   line-height: var(--body-line-height);
@@ -125,7 +125,7 @@ a:visited {
 
 /* HEADINGS */
 h2, h3, h4, h5, h6 {
-  font-family: acumin-pro-extra-condensed, sans-serif;
+  font-family: Impact, acumin-pro-extra-condensed, sans-serif;
   font-weight: var(--weight-bold);
   font-style: normal;
   text-transform: lowercase;
@@ -206,7 +206,7 @@ svg {
 a.btn {
   display: inline-block;
   padding: 0.6rem 1.6rem;
-  font-family: acumin-pro-extra-condensed, sans-serif;
+  font-family: Impact, acumin-pro-extra-condensed, sans-serif;
   font-weight: var(--weight-bold);
   font-size: 133%;
   text-decoration: none;

@@ -6,7 +6,7 @@ nav .nav-list {
 nav .nav-list li a {
   position: relative;
   display: block;
-  font-family: acumin-pro-extra-condensed, sans-serif;
+  font-family: Impact, acumin-pro-extra-condensed, sans-serif;
   font-weight: var(--weight-bold);
   font-style: normal;
   font-size: calc(var(--body-font-size) * 2.0);
