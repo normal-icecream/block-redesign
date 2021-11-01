@@ -1,0 +1,21 @@
+.starburst-anchor-parent {
+  display: relative;
+}
+
+.starburst-anchor {
+  /* border: 2px solid red; */
+  margin-bottom: 2rem !important;
+}
+
+@media (min-width: 786px) {
+  aside.starburst-anchor {
+    position: absolute;
+    margin-top: 2rem;
+    left: 50%;
+    transform: translateX(-200%);
+  }
+
+  aside.starburst-container:hover, .starburst-container:focus {
+    transform: scale(1.4) translateX(-140%);
+  }
+}

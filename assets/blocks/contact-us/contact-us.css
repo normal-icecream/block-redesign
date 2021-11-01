@@ -2,3 +2,9 @@
   text-decoration: none;
   font-weight: var(--weight-bold);
 }
+
+.contact-us-text p {
+  font-size: 66%;
+  line-height: 1.4;
+  font-weight: var(--weight-normal);
+}

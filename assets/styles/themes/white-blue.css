@@ -22,6 +22,29 @@ body {
   border-color: var(--color-white);
 }
 
+/* ABOUT PAGE */
+.locations-search-form .locations-search-input {
+  border-color: var(--color-blue);
+  background: var(--color-white);
+  color: var(--color-blue);
+}
+
+.locations-search-form .locations-search-btn {
+  background: var(--color-blue);
+  color: var(--color-white);
+}
+
+.locations-search-form .locations-showAll-btn {
+  background: var(--color-pink);
+  color: var(--color-blue);
+  border-color: var(--color-blue);
+}
+
+.locations-search-results-grid div {
+  background: var(--color-blue);
+  color: var(--color-white);
+}
+
 /* ORDER PAGE */
 
 main[class*=order--] > div:not(.order-location-info) {

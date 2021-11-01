@@ -46,6 +46,8 @@ a[data-origin=external] {
 }
 
 .starburst-container > .starburst-text {
+  font-size: 90%;
+  line-height: 100%;
   width: 20rem;
   padding: 0 4rem;
   z-index: 2;
@@ -54,6 +56,23 @@ a[data-origin=external] {
   left: 50%;
   transform: translate(-50%, -50%) rotate(8deg);
 }
+
+@media (min-width: 768px) {
+  .starburst-container.starburst-float-left {
+    /* border: 2px solid red; */
+    margin-top: -10rem;
+    /* position: relative; */
+  }
+}
+
+@media (min-width: 1200px) {
+  .starburst-container.starburst-float-left {
+    /* position: absolute; */
+    margin-top: 0;
+    margin-left: -12rem;
+  }
+}
+
 
 @keyframes star-spin {
   from {

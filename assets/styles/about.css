@@ -29,12 +29,6 @@ main.about > div:not(.about-info) {
   padding: 2rem;
 }
 
-main.about > div:not(.about-info) p {
-  font-size: 66%;
-  line-height: 1.4;
-  font-weight: var(--weight-normal);
-}
-
 main.about > div:not(.about-info) p strong {
   font-size: 133%;
 }
