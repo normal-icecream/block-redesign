@@ -6,7 +6,6 @@ import {
 } from '../../scripts/scripts.js';
 
 export default async function decorateStarburstAnchor(block) {
-  console.log('hi from starburst anchor');
   const config = readBlockConfig(block);
 
   // build starburst container
@@ -16,27 +15,28 @@ export default async function decorateStarburstAnchor(block) {
   });
   
   // build starburst
-  const configColor = config.color;
   const starburst = createEl('img', { 
-    src: buildPath(`svg/starburst-${configColor}.svg`),
+    src: buildPath(`svg/starburst-${config.color}.svg`),
     class: `starburst`
   });
 
-  const configText = config.text;
   const text = createEl('p', {
     class: 'starburst-text'
   });
-  text.textContent = configText;
+  text.textContent = config.text;
 
   block.remove(); // remove config div
 
   container.append(text, starburst);
-  container.classList.add(`starburst-${configColor}`);
+  container.classList.add(`starburst-${config.color}`);
+  if (config.float) {
+    container.classList.add(`starburst-float-${config.float}`);
+  }
   
   const anchorTarget = document.getElementById(toClassName(config.anchor));
 
   let targetParent = anchorTarget.parentNode;
-  if (targetParent.parentElement.nodeName === 'DIV') {
+  if (targetParent.parentElement && targetParent.parentElement.nodeName === 'DIV') {
     targetParent = targetParent.parentNode;
   }
 

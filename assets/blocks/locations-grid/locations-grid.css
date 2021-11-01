@@ -1,3 +1,7 @@
+body {
+  overflow-x: hidden;
+}
+
 @media (min-width: 768px) {
   .locations-grid {
     display: flex;
@@ -19,7 +23,7 @@
   }
 
   .locations-grid > *:nth-child(even) > aside {
-    transform: translateX(100%);
+    transform: translateX(99%);
   }
 
   .locations-grid > *:nth-child(even) > aside:hover,

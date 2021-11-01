@@ -57,6 +57,23 @@ a[data-origin=external] {
   transform: translate(-50%, -50%) rotate(8deg);
 }
 
+@media (min-width: 768px) {
+  .starburst-container.starburst-float-left {
+    /* border: 2px solid red; */
+    margin-top: -10rem;
+    /* position: relative; */
+  }
+}
+
+@media (min-width: 1200px) {
+  .starburst-container.starburst-float-left {
+    /* position: absolute; */
+    margin-top: 0;
+    margin-left: -12rem;
+  }
+}
+
+
 @keyframes star-spin {
   from {
     transform:rotate(0deg);

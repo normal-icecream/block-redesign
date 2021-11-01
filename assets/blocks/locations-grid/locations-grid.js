@@ -20,10 +20,8 @@ function wrapInAnchor(block, url) {
 }
 
 export default function decorateLocationsGrid(block) {
-  console.log('hi from location grid');
   emptyDivs(block);
   const rows = document.querySelectorAll('.locations-grid > div');
-  console.log(rows);
   rows.forEach((row) => {
     const { href } = row.querySelector('a');
     const a = wrapInAnchor(row, href);

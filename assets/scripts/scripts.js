@@ -437,8 +437,6 @@ async function decoratePage(win = window) {
     const path = getPath();
     const legal = ['privacy-policy', 'terms-and-conditions'];
 
-    console.log(path);
-
     if (path.includes('order')) {
       decorateOrderPage(path);
     }
@@ -532,7 +530,7 @@ function removeEmptyDivs() {
  * @returns {object} 
  */
 export async function fetchLabels() {
-  const resp = await fetch('/_data/labels.json', { cache: "reload" });
+  const resp = await fetch('/_data/labels.json', { cache: 'reload' });
   let json = await resp.json();
   if (json.data) {
     json = json.data; // helix quirk, difference between live and local
