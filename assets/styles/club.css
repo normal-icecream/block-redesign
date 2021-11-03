@@ -1,0 +1,31 @@
+main.pint-club {
+  text-align: center;
+}
+
+/* CLUB INFO */
+
+main.pint-club > div.club-info p {
+  position: relative;
+  height: 10rem;
+}
+
+main.pint-club > div.club-info svg.icon-pint-club {
+  position: absolute;
+  width: 20rem;
+  height: 20rem;
+  top: -1rem;
+  right: 0;
+  z-index: 2;
+}
+
+@media (min-width: 768px) {
+  main.pint-club > div.club-info svg.icon-pint-club {
+    right: -10%;
+  }
+}
+
+@media (min-width: 1200px) {
+  main.pint-club > div.club-info svg.icon-pint-club {
+    right: -50%;
+  }
+}

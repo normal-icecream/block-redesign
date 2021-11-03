@@ -266,7 +266,7 @@ async function loadBlock(block) {
     loadCSS(`blocks/${name}/${name}.css`);
     try {
       const mod = await
-      import (buildPath(`blocks/${name}/${name}.js`));
+      import(buildPath(`blocks/${name}/${name}.js`));
       if (mod.default) {
         await mod.default(block, name, document);
       }
@@ -446,6 +446,9 @@ async function decoratePage(win = window) {
     if (path.includes('about')) {
       decorateAboutPage(path);
     }
+    if (path.includes('pint-club')) {
+      decorateClubPage(path);
+    }
 
     doc.querySelector('body').classList.add('appear');
     setLCPTrigger(doc, async() => {
@@ -454,12 +457,39 @@ async function decoratePage(win = window) {
       if (path.includes('index')) {
         decorateIndexPage(path, main);
       }
+      const checkoutEnabled = ['pint-club', 'order'];
+      if (checkoutEnabled.includes(path[0])) {
+        decorateSquareLinks();
+        loadCSS(`styles/forms.css`);
+        const mod = await import(buildPath(`scripts/forms.js`));
+        if (mod.default) {
+          await mod.default(block, 'forms', document);
+        }
+        loadScript('https://js.squareup.com/v2/paymentform');
+      }
       loadCSS('styles/lazy-styles.css');
       loadFooter();
       externalizeLinks();
     });
   }
 
+}
+
+/**
+ * Build autoblock.
+ * @param {array} path path parameters
+ */
+function buildAutoblock(type) {
+  const wrapper = createEl('section', {
+    class: `${type}-container`
+  });
+  const block = createEl('div', {
+    class: type
+  });
+  wrapper.append(block);
+  document.querySelector('main').append(wrapper);
+  decorateBlock(block);
+  loadBlock(block);
 }
 
 /**
@@ -489,8 +519,6 @@ function decorateOrderPage(path) {
     .querySelector('main > div:first-of-type')
     .classList.add('order-location-info');
   loadCSS('styles/order.css');
-  decorateSquareLinks();
-  loadScript('https://js.squareup.com/v2/paymentform');
 }
 
 /**
@@ -514,6 +542,20 @@ function decorateAboutPage(path) {
     .querySelector('main > div:first-of-type')
     .classList.add('about-info');
   loadCSS('styles/about.css');
+}
+
+/**
+ * Decorate pint club page.
+ * @param {array} path path parameters
+ */
+function decorateClubPage(path) {
+  document.querySelector('main').classList.add(path.join('--'));
+    // set first div as info
+  document
+    .querySelector('main > div:first-of-type')
+    .classList.add('club-info');
+  loadCSS('styles/club.css');
+  buildAutoblock('customize-menu');
 }
 
 function removeEmptyDivs() {
