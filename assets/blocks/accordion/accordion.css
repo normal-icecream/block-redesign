@@ -1,0 +1,62 @@
+.accordion {
+  margin-top: 2rem;
+}
+
+@media (min-width: 1200px) {
+  .accordion {
+    width: unset;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .accordion > div {
+    width: calc(50% - 1rem);
+    margin-right: 2rem;
+  }
+
+  .accordion > div:nth-of-type(2n) {
+    margin-right: 0;
+  }
+}
+
+.accordion > div {
+  text-align: left;
+  font-size: 66%;
+  line-height: 1.4;
+  font-weight: var(--weight-normal);
+  margin-bottom: 1rem;
+}
+
+.accordion > div h3 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: letter-spacing 0.2s;
+}
+
+.accordion > div h3:hover,
+.accordion > div h3:focus {
+  letter-spacing: 1px;
+}
+
+.accordion > div h3::after {
+  content: '\2303';
+  display: block;
+  margin-left: 3px;
+  transform: rotate(180deg);
+  transition: transform 0.2s;
+}
+
+.accordion > div h3 + p {
+  margin-top: 1rem;
+}
+
+.accordion > div h3[aria-expanded=false] + p {
+  display: none;
+  visibility: hidden;
+}
+
+.accordion > div h3[aria-expanded=true]::after {
+  transform: rotate(0deg);
+}

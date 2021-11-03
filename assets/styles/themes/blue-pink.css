@@ -5,7 +5,6 @@ body {
 }
 
 /* INDEX PAGE */
-
 .index-carousel .icon {
   background: transparent;
 }
@@ -41,9 +40,7 @@ body {
   border-color: var(--color-blue);
 }
 
-
 /* ORDER PAGE */
-
 main[class*=order--] > div:not(.order-location-info) {
   background: var(--color-pink);
   color: var(--color-blue);

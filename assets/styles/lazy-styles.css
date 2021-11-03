@@ -24,6 +24,10 @@ a[data-origin=external] {
   color: var(--color-blue);
 }
 
+.starburst-container.starburst-red {
+  color: var(--color-white);
+}
+
 .starburst-container:hover,
 .starburst-container:focus {
   transform: scale(1.4);

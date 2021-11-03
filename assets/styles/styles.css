@@ -303,3 +303,12 @@ button.icon:focus {
 .popup-container {
   visibility: hidden;
 }
+
+/* BLOCKS */
+body.appear, .block {
+  visibility: hidden;
+}
+
+body.appear .block[data-block-loaded=true] {
+  visibility: unset;
+}

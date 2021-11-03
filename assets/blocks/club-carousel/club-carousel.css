@@ -1,0 +1,106 @@
+.club-carousel-container {
+  position: relative;
+  flex: 1 1 auto;
+  max-width: unset;
+  width: 100%;
+  padding: 0;
+}
+
+.club-carousel {
+  visibility: hidden;
+  display: none;
+}
+
+.club-carousel[data-block-loaded=true] {
+  visibility: visible;
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  max-height: inherit;
+  width: unset;
+}
+
+.club-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .club-carousel {
+    height: calc(100vh * .6);
+  }
+}
+
+.club-carousel-slide {
+  display: inline-block;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.club-carousel-slide:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.club-carousel-slide img {
+  height: 100%;
+  max-width: 254px;
+  object-fit: cover;
+}
+
+@media (min-width: 464px) {
+  .club-carousel-slide {
+    max-width: calc(100vw / 2.6);
+  }
+
+  .club-carousel-slide img {
+    max-width: unset;
+    width: calc(100vw / 2.6);
+  }
+}
+
+@media (min-width: 768px) {
+  .club-carousel .club-carousel-slide {
+    max-width: unset;
+    width: unset;
+  }
+
+  .club-carousel .club-carousel-slide img {
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+@media (min-width: 1200px) {
+  .club-carousel .club-carousel-slide img {
+  }
+}
+
+.club-carousel .icon {
+  position: absolute;
+  bottom: 1.5rem;
+  background: var(--color-white);
+  opacity: 0.2;
+}
+
+.club-carousel .icon.nav.right {
+  right: 1.5rem;
+}
+
+.club-carousel .icon.nav.left {
+  left: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .club-carousel .icon.nav.right {
+    right: 1rem;
+  }
+  
+  .club-carousel .icon.nav.left {
+    left: 1rem;
+  }
+}
+
+.club-carousel .icon.nav:hover,
+.club-carousel .icon.nav:focus {
+  opacity: 1;
+}
